@@ -14,10 +14,10 @@ def welcome():
 def upload():
     data = request.json
     git_repo_url = data.get("git_repo_url")
-    branch = data.get("branch", "main")
+    branch = data.get("git_branch", "main")
     hit_token = data.get("git_token")
 
-    response_data = {"assesmentId":"assessmentId1"};
+    response_data = {"assesmentId":"assessmentId1"+branch};
     return response_data
 
 @app.route('/status/<assesmentid>')
