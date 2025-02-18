@@ -1,0 +1,9 @@
+sudo apt install python3-pip
+
+sudo apt install python3-virtualenv
+
+virtualenv env
+
+source env/bin/activate
+
+sudo apt install python3-flask
