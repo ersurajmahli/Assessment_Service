@@ -23,11 +23,11 @@ def upload():
 @app.route('/status/<assesmentid>')
 def status(assesmentid):
     assessment_status = {
-        "Tech Stack Analysis":"Pending",
-        "Complexity Analysis":"Pending",
-        "Author Analysis":"Pending",
-        "Commit Analysis":"Pending",
-        "Branch & Tag Analysis":"Pending"
+        "Tech Stack Analysis":"In progress",
+        "Complexity Analysis":"Todo",
+        "Author Analysis":"Todo",
+        "Commit Analysis":"Todo",
+        "Branch & Tag Analysis":"Todo"
     }
     return assessment_status
 
