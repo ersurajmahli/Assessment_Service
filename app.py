@@ -18,7 +18,7 @@ def upload():
     hit_token = data.get("git_token")
 
     response_data = {"assesmentId":"assessmentId1"+branch};
-    return response_data
+    return jsonify(response_data)
 
 @app.route('/status/<assesmentid>')
 def status(assesmentid):
@@ -29,7 +29,7 @@ def status(assesmentid):
         "Commit Analysis":"Todo",
         "Branch & Tag Analysis":"Todo"
     }
-    return assessment_status
+    return jsonify(assessment_status)
 
 
 
