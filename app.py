@@ -1,24 +1,47 @@
 ##Flask App Routing
 
 from flask import Flask, request, jsonify
+import threading
+import time
 
 ## create a simple flask application
 
 app = Flask(__name__)
 
+
 @app.route("/", methods=["GET"])
 def welcome():
-    return "Welcome to the Assessment Service"
+    rprint("Welcome to the Assessment Service")
 
 @app.route("/upload", methods=["POST"])
 def upload():
-    data = request.json
-    git_repo_url = data.get("git_repo_url")
-    branch = data.get("git_branch", "main")
-    hit_token = data.get("git_token")
+    global upload_request  
+    upload_request = request.json 
 
-    response_data = {"assesmentId":"assessmentId1"+branch};
+    thread =threading.Thread(target=start_bc)
+    thread.start()
+    response_data = {"assesmentId":"assessmentId1"+upload_request.get("git_branch", "main")};
     return jsonify(response_data)
+
+
+def start_bc():
+    try:   
+        git_repo_url = upload_request.get("git_repo_url")
+        branch = upload_request.get("git_branch", "main")
+        git_token = upload_request.get("git_token")     
+        print(git_repo_url)
+        print(branch)
+        print(git_token)
+        
+        i = 1
+        while i<1000000:
+            print(i)
+            i+=1
+        time.sleep(5)
+        print("Assessment done")
+        ##return redirect("/")
+    except Exception as e:
+        return jsonify({"status":"error", "message":str(e)})
 
 @app.route('/status/<assesmentid>')
 def status(assesmentid):
